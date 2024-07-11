@@ -1,0 +1,125 @@
+Ejercicio 01:
+
+#include"pch.h"
+#include<iostream>
+//#include<cstdlib>
+using namespace std;
+
+void invertir(int num) {
+    cout << num % 10;
+    if (num > 10) invertir(num / 10);
+}
+int main()
+ {
+    //system("color 0a");
+    int num;
+    cout << " INGRESE NUMERO: ";
+    cin >> num;
+    cout << "\n NUMERO:" << num;
+    cout << "\nINVERTIDO:";
+    invertir(num);
+    return 0;
+}
+
+//Con variable:
+#include"pch.h"
+#include<iostream>
+//#include<cstdlib>
+using namespace std;
+
+int invertir(int num,int num1) {
+    num1 = (num1 * 10) + (num % 10);
+    num  /= 10;
+    //cout << num % 10;
+    if (num > 0) return invertir(num, num1);
+    else return num1;
+}
+int main()
+{
+    //system("color 0a");
+    int num;
+    cout << " INGRESE NUMERO: ";
+    cin >> num;
+    cout << "\n NUMERO:" << num;
+    cout << "\nINVERTIDO:"<<invertir(num,0);
+    return 0;
+}
+
+
+Exponente de un número
+//ingresar un número y elevarlo a la potencia
+
+#include<iostream>
+using namespace std;
+
+int exponente(int base, int exp){ //base = 2, exp = 3
+    if(exp == 0) return 1; // 3 == 0 -> No .... 2 == 0 -> No .... 1 == 0 -> No
+    if(exp == 1) return base; //3 == 1 -> No ... 2 == 1 -> No .... 1 == 1 -> Si
+    else return base* exponente (base, exp - 1); //2 * exponente(2,3-1)..... 2 * exponente(2,2-1).....   1 = 8
+}
+
+int main(){
+    int b,exp;
+    cout<<"\nIngresar base: ";
+    cin>>b;
+    cout<<"\nIngresar exponente: ";
+    cin>>exp;
+    cout<<"\nBase: "<<b;
+    cout<<"\nExponente: "<<exp;
+    cout<<"\n\nEl resultado es: "<<exponente(b,exp);
+    cin.get();
+    cin.ignore();
+    return 0;
+}
+
+
+
+
+Suma de números
+
+#include"pch.h"
+#include<iostream>
+
+using namespace std;
+
+int suma(int num) {
+
+    if (num == 0) return 0;
+    else
+    {
+        return num + suma(num - 1);
+    }
+}
+int main() {
+    int num;
+    cout << "\nIngresar el número: ";
+    cin >> num;
+    cout<<suma(num);
+    return 0;
+}
+
+
+-----------------
+
+Mostrar número binario
+
+#include"pch.h"
+#include<iostream>
+using namespace std;
+
+void binario(int n) {
+    if (n > 1)      binario(n / 2);
+    cout << n % 2;
+}
+
+int main()
+{
+    int nro;
+   
+    cout << " INGRESE NUMERO:";
+    cin >> nro;
+    cout << "\n Numero:" << nro << "\n";
+    cout << "\n Binario:";
+    binario(nro);
+    return 0;
+}

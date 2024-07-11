@@ -1,0 +1,673 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Listas2</title>
+  <style>
+  #content {
+  width: 960px;
+  padding: 0;
+  margin: auto;
+  }
+  </style>
+</head>
+<body>
+  <div id="content">
+  <h1 id="listas-enlazadas">Listas Enlazadas</h1>
+<h4 id="diagrama-de-clase-de-lista-simplemente-enlazada-con-puntero-al-inicio">Diagrama de clase de lista simplemente enlazada con puntero al inicio</h4>
+<svg viewBox="0,0,480,210" width="100%">
+<g fill="none" stroke="#369" transform="translate(5 5)">
+<g>
+<rect width="100" height="150"></rect>
+<text fill="#369" x="30" y="20">Lista</text>
+<polyline points="0 30 100 30"></polyline>
+<text fill="#369" x="5" y="50">- lon </text>
+<polyline points="0 60 100 60"></polyline>
+</g>
+<g transform="translate(100 50)">
+<polyline points="0 25 200 25"></polyline>
+<polyline points="180 10 200 25 180 40"></polyline>
+<polygon fill="#a46" points="0 25 20 10 40 25 20 40"></polygon>
+<text fill="#369" x="155" y="20">ini</text>
+<text fill="#369" x="35" y="45">1</text>
+<text fill="#369" x="165" y="45">1</text>
+</g>
+<g transform="translate(300 0)">
+<rect width="100" height="150"></rect>
+<text fill="#369" x="30" y="20">Nodo</text>
+<polyline points="0 30 100 30"></polyline>
+<text fill="#369" x="5" y="50">- elem </text>
+<polyline points="0 60 100 60"></polyline>
+</g>
+<g transform="translate(400 50)">
+<polyline points="0 25 50 25 50 150 -50 150 -50 100"></polyline>
+<polyline points="-35 120 -50 100 -65 120"></polyline>
+<text fill="#369" x="-90" y="120">sig</text>
+<text fill="#369" x="5" y="45">1</text>
+<text fill="#369" x="-30" y="120">1</text>
+</g>
+</g>
+</svg>
+<ul>
+<li>Nodo es una clase embebida dentro de la clase Lista ya que no es necesario exponer dicho tipo.</li>
+<li>En una clase genérica, la clase Lista usaría un tipo template T que aplica al atributo <code>elem</code> de la clase Nodo.</li>
+<li>Resulta útil tener un lambda <code>comparar</code> dentro de la clase Lista para poder realizar búsquedas por múltiples criterios.</li>
+<li>El lambda <code>comparar</code> recibe dos parámetros y retorna un número negativo si el primer parametro es menor al segundo, positivo si el segundo es el menor y cero si son iguales.</li>
+</ul>
+<h2 id="casos-especiales">Casos Especiales</h2>
+<ul>
+<li>Lista simplemente enlazada con puntero al inicio y al final</li>
+</ul>
+<svg viewBox="0,0,700,130" width="100%">
+<g fill="none" stroke="#369" transform="translate(0 5)">
+<g>
+  <text y="15">first</text>
+  <g transform="translate(10 20)">
+    <circle r="2"></circle><polyline points="0 0 0 20 20 20"></polyline>
+    <polygon points="30 20 20 15 20 25"></polygon>
+  </g>
+</g>
+<g transform="translate(40 20)">
+  <rect width="65" height="40"></rect>
+  <rect x="5" y="5" width="40" height="30"></rect>
+  <rect x="50" y="5" width="10" height="30"></rect>
+  <text x="15" y="25">76</text>
+  <g transform="translate(55 20)">
+    <circle r="2"></circle><polyline points="0 0 25 0"></polyline>
+    <polygon points="35 0 25 -5 25 5"></polygon>
+  </g>
+</g>
+<g transform="translate(130 20)">
+  <rect width="65" height="40"></rect>
+  <rect x="5" y="5" width="40" height="30"></rect>
+  <rect x="50" y="5" width="10" height="30"></rect>
+  <text x="15" y="25">55</text>
+  <g transform="translate(55 20)">
+    <circle r="2"></circle><polyline points="0 0 25 0"></polyline>
+    <polygon points="35 0 25 -5 25 5"></polygon>
+  </g>
+</g>
+<g transform="translate(220 20)">
+  <rect width="65" height="40"></rect>
+  <rect x="5" y="5" width="40" height="30"></rect>
+  <rect x="50" y="5" width="10" height="30"></rect>
+  <text x="15" y="25">9</text>
+  <g transform="translate(55 20)">
+    <circle r="2"></circle><polyline points="0 0 25 0"></polyline>
+    <polygon points="35 0 25 -5 25 5"></polygon>
+  </g>
+</g>
+<g transform="translate(310 20)">
+  <rect width="65" height="40"></rect>
+  <rect x="5" y="5" width="40" height="30"></rect>
+  <rect x="50" y="5" width="10" height="30"></rect>
+  <text x="15" y="25">66</text>
+  <g transform="translate(55 20)">
+    <circle r="2"></circle><polyline points="0 0 25 0"></polyline>
+    <polygon points="35 0 25 -5 25 5"></polygon>
+  </g>
+</g>
+<g transform="translate(400 20)">
+  <rect width="65" height="40"></rect>
+  <rect x="5" y="5" width="40" height="30"></rect>
+  <rect x="50" y="5" width="10" height="30"></rect>
+  <text x="15" y="25">10</text>
+  <g transform="translate(55 20)">
+    <circle r="2"></circle><polyline points="0 0 25 0"></polyline>
+    <polygon points="35 0 25 -5 25 5"></polygon>
+  </g>
+</g>
+<g transform="translate(490 20)">
+  <rect width="65" height="40"></rect>
+  <rect x="5" y="5" width="40" height="30"></rect>
+  <rect x="50" y="5" width="10" height="30"></rect>
+  <text x="15" y="25">80</text>
+  <g transform="translate(55 20)">
+    <circle r="2"></circle><polyline points="0 0 25 0"></polyline>
+    <polygon points="35 0 25 -5 25 5"></polygon>
+  </g>
+</g>
+<g transform="translate(580 20)">
+  <rect width="65" height="40"></rect>
+  <rect x="5" y="5" width="40" height="30"></rect>
+  <rect x="50" y="5" width="10" height="30"></rect>
+  <text x="15" y="25">11</text>
+  <g transform="translate(55 20)">
+    <circle r="2"></circle><polyline points="0 0 25 0"></polyline>
+    <polygon points="35 0 25 -5 25 5"></polygon>
+    <polyline points="35 -15 35 15"></polyline>
+    <polyline points="40 -10 40 10"></polyline>
+    <polyline points="45 -5 45 5"></polyline>
+  </g>
+</g>
+<g>
+  <text y="95">last</text>
+  <g transform="translate(10 100)">
+    <circle r="2"></circle><polyline points="0 0 0 20 600 20 600 -30"></polyline>
+    <polygon points="600 -40 595 -30 605 -30"></polygon>
+  </g>
+</g>
+</g>
+</svg>
+<ul>
+<li>Lista doblemente enlazada con puntero al inicio</li>
+</ul>
+<svg viewBox="0,0,700,70" width="100%">
+<g fill="none" stroke="#369" transform="translate(0 5)">
+<g>
+  <text y="15">first</text>
+  <g transform="translate(10 20)">
+    <circle r="2"></circle><polyline points="0 0 0 10 20 10"></polyline>
+    <polygon points="30 10 20 5 20 15"></polygon>
+  </g>
+</g>
+<g transform="translate(40 20)">
+  <g transform="translate(10 30) rotate(180)">
+    <circle r="2"></circle><polyline points="0 0 25 0"></polyline>
+    <polygon points="35 0 25 -5 25 5"></polygon>
+    <polyline points="35 -15 35 15"></polyline>
+    <polyline points="40 -10 40 10"></polyline>
+    <polyline points="45 -5 45 5"></polyline>
+  </g>
+  <rect width="80" height="40"></rect>
+  <rect x="5" y="5" width="10" height="30"></rect>
+  <rect x="20" y="5" width="40" height="30"></rect>
+  <rect x="65" y="5" width="10" height="30"></rect>
+  <text x="30" y="25">67</text>
+  <g transform="translate(70 10)">
+    <circle r="2"></circle><polyline points="0 0 25 0"></polyline>
+    <polygon points="35 0 25 -5 25 5"></polygon>
+  </g>
+</g>
+<g transform="translate(145 20)">
+  <g transform="translate(10 30) rotate(180)">
+    <circle r="2"></circle><polyline points="0 0 25 0"></polyline>
+    <polygon points="35 0 25 -5 25 5"></polygon>
+  </g>
+  <rect width="80" height="40"></rect>
+  <rect x="5" y="5" width="10" height="30"></rect>
+  <rect x="20" y="5" width="40" height="30"></rect>
+  <rect x="65" y="5" width="10" height="30"></rect>
+  <text x="30" y="25">33</text>
+  <g transform="translate(70 10)">
+    <circle r="2"></circle><polyline points="0 0 25 0"></polyline>
+    <polygon points="35 0 25 -5 25 5"></polygon>
+  </g>
+</g>
+<g transform="translate(250 20)">
+  <g transform="translate(10 30) rotate(180)">
+    <circle r="2"></circle><polyline points="0 0 25 0"></polyline>
+    <polygon points="35 0 25 -5 25 5"></polygon>
+  </g>
+  <rect width="80" height="40"></rect>
+  <rect x="5" y="5" width="10" height="30"></rect>
+  <rect x="20" y="5" width="40" height="30"></rect>
+  <rect x="65" y="5" width="10" height="30"></rect>
+  <text x="30" y="25">19</text>
+  <g transform="translate(70 10)">
+    <circle r="2"></circle><polyline points="0 0 25 0"></polyline>
+    <polygon points="35 0 25 -5 25 5"></polygon>
+  </g>
+</g>
+<g transform="translate(355 20)">
+  <g transform="translate(10 30) rotate(180)">
+    <circle r="2"></circle><polyline points="0 0 25 0"></polyline>
+    <polygon points="35 0 25 -5 25 5"></polygon>
+  </g>
+  <rect width="80" height="40"></rect>
+  <rect x="5" y="5" width="10" height="30"></rect>
+  <rect x="20" y="5" width="40" height="30"></rect>
+  <rect x="65" y="5" width="10" height="30"></rect>
+  <text x="30" y="25">61</text>
+  <g transform="translate(70 10)">
+    <circle r="2"></circle><polyline points="0 0 25 0"></polyline>
+    <polygon points="35 0 25 -5 25 5"></polygon>
+  </g>
+</g>
+<g transform="translate(460 20)">
+  <g transform="translate(10 30) rotate(180)">
+    <circle r="2"></circle><polyline points="0 0 25 0"></polyline>
+    <polygon points="35 0 25 -5 25 5"></polygon>
+  </g>
+  <rect width="80" height="40"></rect>
+  <rect x="5" y="5" width="10" height="30"></rect>
+  <rect x="20" y="5" width="40" height="30"></rect>
+  <rect x="65" y="5" width="10" height="30"></rect>
+  <text x="30" y="25">9</text>
+  <g transform="translate(70 10)">
+    <circle r="2"></circle><polyline points="0 0 25 0"></polyline>
+    <polygon points="35 0 25 -5 25 5"></polygon>
+  </g>
+</g>
+<g transform="translate(565 20)">
+  <g transform="translate(10 30) rotate(180)">
+    <circle r="2"></circle><polyline points="0 0 25 0"></polyline>
+    <polygon points="35 0 25 -5 25 5"></polygon>
+  </g>
+  <rect width="80" height="40"></rect>
+  <rect x="5" y="5" width="10" height="30"></rect>
+  <rect x="20" y="5" width="40" height="30"></rect>
+  <rect x="65" y="5" width="10" height="30"></rect>
+  <text x="30" y="25">43</text>
+  <g transform="translate(70 10)">
+    <circle r="2"></circle><polyline points="0 0 25 0"></polyline>
+    <polygon points="35 0 25 -5 25 5"></polygon>
+    <polyline points="35 -15 35 15"></polyline>
+    <polyline points="40 -10 40 10"></polyline>
+    <polyline points="45 -5 45 5"></polyline>
+  </g>
+</g>
+</g>
+</svg>
+<ul>
+<li>Lista doblemente enlazada con puntero al inicio y al final</li>
+</ul>
+<svg viewBox="0,0,700,130" width="100%">
+<g fill="none" stroke="#369" transform="translate(0 5)">
+<g>
+  <text y="15">first</text>
+  <g transform="translate(10 20)">
+    <circle r="2"></circle><polyline points="0 0 0 10 20 10"></polyline>
+    <polygon points="30 10 20 5 20 15"></polygon>
+  </g>
+</g>
+<g transform="translate(40 20)">
+  <g transform="translate(10 30) rotate(180)">
+    <circle r="2"></circle><polyline points="0 0 25 0"></polyline>
+    <polygon points="35 0 25 -5 25 5"></polygon>
+    <polyline points="35 -15 35 15"></polyline>
+    <polyline points="40 -10 40 10"></polyline>
+    <polyline points="45 -5 45 5"></polyline>
+  </g>
+  <rect width="80" height="40"></rect>
+  <rect x="5" y="5" width="10" height="30"></rect>
+  <rect x="20" y="5" width="40" height="30"></rect>
+  <rect x="65" y="5" width="10" height="30"></rect>
+  <text x="30" y="25">67</text>
+  <g transform="translate(70 10)">
+    <circle r="2"></circle><polyline points="0 0 25 0"></polyline>
+    <polygon points="35 0 25 -5 25 5"></polygon>
+  </g>
+</g>
+<g transform="translate(145 20)">
+  <g transform="translate(10 30) rotate(180)">
+    <circle r="2"></circle><polyline points="0 0 25 0"></polyline>
+    <polygon points="35 0 25 -5 25 5"></polygon>
+  </g>
+  <rect width="80" height="40"></rect>
+  <rect x="5" y="5" width="10" height="30"></rect>
+  <rect x="20" y="5" width="40" height="30"></rect>
+  <rect x="65" y="5" width="10" height="30"></rect>
+  <text x="30" y="25">33</text>
+  <g transform="translate(70 10)">
+    <circle r="2"></circle><polyline points="0 0 25 0"></polyline>
+    <polygon points="35 0 25 -5 25 5"></polygon>
+  </g>
+</g>
+<g transform="translate(250 20)">
+  <g transform="translate(10 30) rotate(180)">
+    <circle r="2"></circle><polyline points="0 0 25 0"></polyline>
+    <polygon points="35 0 25 -5 25 5"></polygon>
+  </g>
+  <rect width="80" height="40"></rect>
+  <rect x="5" y="5" width="10" height="30"></rect>
+  <rect x="20" y="5" width="40" height="30"></rect>
+  <rect x="65" y="5" width="10" height="30"></rect>
+  <text x="30" y="25">19</text>
+  <g transform="translate(70 10)">
+    <circle r="2"></circle><polyline points="0 0 25 0"></polyline>
+    <polygon points="35 0 25 -5 25 5"></polygon>
+  </g>
+</g>
+<g transform="translate(355 20)">
+  <g transform="translate(10 30) rotate(180)">
+    <circle r="2"></circle><polyline points="0 0 25 0"></polyline>
+    <polygon points="35 0 25 -5 25 5"></polygon>
+  </g>
+  <rect width="80" height="40"></rect>
+  <rect x="5" y="5" width="10" height="30"></rect>
+  <rect x="20" y="5" width="40" height="30"></rect>
+  <rect x="65" y="5" width="10" height="30"></rect>
+  <text x="30" y="25">61</text>
+  <g transform="translate(70 10)">
+    <circle r="2"></circle><polyline points="0 0 25 0"></polyline>
+    <polygon points="35 0 25 -5 25 5"></polygon>
+  </g>
+</g>
+<g transform="translate(460 20)">
+  <g transform="translate(10 30) rotate(180)">
+    <circle r="2"></circle><polyline points="0 0 25 0"></polyline>
+    <polygon points="35 0 25 -5 25 5"></polygon>
+  </g>
+  <rect width="80" height="40"></rect>
+  <rect x="5" y="5" width="10" height="30"></rect>
+  <rect x="20" y="5" width="40" height="30"></rect>
+  <rect x="65" y="5" width="10" height="30"></rect>
+  <text x="30" y="25">9</text>
+  <g transform="translate(70 10)">
+    <circle r="2"></circle><polyline points="0 0 25 0"></polyline>
+    <polygon points="35 0 25 -5 25 5"></polygon>
+  </g>
+</g>
+<g transform="translate(565 20)">
+  <g transform="translate(10 30) rotate(180)">
+    <circle r="2"></circle><polyline points="0 0 25 0"></polyline>
+    <polygon points="35 0 25 -5 25 5"></polygon>
+  </g>
+  <rect width="80" height="40"></rect>
+  <rect x="5" y="5" width="10" height="30"></rect>
+  <rect x="20" y="5" width="40" height="30"></rect>
+  <rect x="65" y="5" width="10" height="30"></rect>
+  <text x="30" y="25">43</text>
+  <g transform="translate(70 10)">
+    <circle r="2"></circle><polyline points="0 0 25 0"></polyline>
+    <polygon points="35 0 25 -5 25 5"></polygon>
+    <polyline points="35 -15 35 15"></polyline>
+    <polyline points="40 -10 40 10"></polyline>
+    <polyline points="45 -5 45 5"></polyline>
+  </g>
+</g>
+<g>
+  <text y="95">last</text>
+  <g transform="translate(10 100)">
+    <circle r="2"></circle><polyline points="0 0 0 20 600 20 600 -30"></polyline>
+    <polygon points="600 -40 595 -30 605 -30"></polygon>
+  </g>
+</g>
+</g>
+</svg>
+<ul>
+<li>Lista simplemente enlazada circular con puntero al inicio</li>
+</ul>
+<svg viewBox="0,0,700,70" width="100%">
+<g fill="none" stroke="#369" transform="translate(0 5)">
+<g>
+  <text y="15">first</text>
+  <g transform="translate(10 20)">
+    <circle r="2"></circle><polyline points="0 0 0 20 20 20"></polyline>
+    <polygon points="30 20 20 15 20 25"></polygon>
+  </g>
+</g>
+<g transform="translate(40 20)">
+  <rect width="65" height="40"></rect>
+  <rect x="5" y="5" width="40" height="30"></rect>
+  <rect x="50" y="5" width="10" height="30"></rect>
+  <text x="15" y="25">76</text>
+  <g transform="translate(55 20)">
+    <circle r="2"></circle><polyline points="0 0 25 0"></polyline>
+    <polygon points="35 0 25 -5 25 5"></polygon>
+  </g>
+</g>
+<g transform="translate(130 20)">
+  <rect width="65" height="40"></rect>
+  <rect x="5" y="5" width="40" height="30"></rect>
+  <rect x="50" y="5" width="10" height="30"></rect>
+  <text x="15" y="25">55</text>
+  <g transform="translate(55 20)">
+    <circle r="2"></circle><polyline points="0 0 25 0"></polyline>
+    <polygon points="35 0 25 -5 25 5"></polygon>
+  </g>
+</g>
+<g transform="translate(220 20)">
+  <rect width="65" height="40"></rect>
+  <rect x="5" y="5" width="40" height="30"></rect>
+  <rect x="50" y="5" width="10" height="30"></rect>
+  <text x="15" y="25">9</text>
+  <g transform="translate(55 20)">
+    <circle r="2"></circle><polyline points="0 0 25 0"></polyline>
+    <polygon points="35 0 25 -5 25 5"></polygon>
+  </g>
+</g>
+<g transform="translate(310 20)">
+  <rect width="65" height="40"></rect>
+  <rect x="5" y="5" width="40" height="30"></rect>
+  <rect x="50" y="5" width="10" height="30"></rect>
+  <text x="15" y="25">66</text>
+  <g transform="translate(55 20)">
+    <circle r="2"></circle><polyline points="0 0 25 0"></polyline>
+    <polygon points="35 0 25 -5 25 5"></polygon>
+  </g>
+</g>
+<g transform="translate(400 20)">
+  <rect width="65" height="40"></rect>
+  <rect x="5" y="5" width="40" height="30"></rect>
+  <rect x="50" y="5" width="10" height="30"></rect>
+  <text x="15" y="25">10</text>
+  <g transform="translate(55 20)">
+    <circle r="2"></circle><polyline points="0 0 25 0"></polyline>
+    <polygon points="35 0 25 -5 25 5"></polygon>
+  </g>
+</g>
+<g transform="translate(490 20)">
+  <rect width="65" height="40"></rect>
+  <rect x="5" y="5" width="40" height="30"></rect>
+  <rect x="50" y="5" width="10" height="30"></rect>
+  <text x="15" y="25">80</text>
+  <g transform="translate(55 20)">
+    <circle r="2"></circle><polyline points="0 0 25 0"></polyline>
+    <polygon points="35 0 25 -5 25 5"></polygon>
+  </g>
+</g>
+<g transform="translate(580 20)">
+  <rect width="65" height="40"></rect>
+  <rect x="5" y="5" width="40" height="30"></rect>
+  <rect x="50" y="5" width="10" height="30"></rect>
+  <text x="15" y="25">11</text>
+  <g transform="translate(55 20)">
+    <circle r="2"></circle>
+    <polyline points="0 0 25 0 25 -40 -565 -40 -565 -30"></polyline>
+    <polygon points="-565 -20 -560 -30 -570 -30"></polygon>
+  </g>
+</g>
+</g>
+</svg>
+<ul>
+<li>Lista simplemente enlazada circular con puntero al inicio y al final</li>
+</ul>
+<svg viewBox="0,0,700,130" width="100%">
+<g fill="none" stroke="#369" transform="translate(0 5)">
+<g>
+  <text y="15">first</text>
+  <g transform="translate(10 20)">
+    <circle r="2"></circle><polyline points="0 0 0 20 20 20"></polyline>
+    <polygon points="30 20 20 15 20 25"></polygon>
+  </g>
+</g>
+<g transform="translate(40 20)">
+  <rect width="65" height="40"></rect>
+  <rect x="5" y="5" width="40" height="30"></rect>
+  <rect x="50" y="5" width="10" height="30"></rect>
+  <text x="15" y="25">76</text>
+  <g transform="translate(55 20)">
+    <circle r="2"></circle><polyline points="0 0 25 0"></polyline>
+    <polygon points="35 0 25 -5 25 5"></polygon>
+  </g>
+</g>
+<g transform="translate(130 20)">
+  <rect width="65" height="40"></rect>
+  <rect x="5" y="5" width="40" height="30"></rect>
+  <rect x="50" y="5" width="10" height="30"></rect>
+  <text x="15" y="25">55</text>
+  <g transform="translate(55 20)">
+    <circle r="2"></circle><polyline points="0 0 25 0"></polyline>
+    <polygon points="35 0 25 -5 25 5"></polygon>
+  </g>
+</g>
+<g transform="translate(220 20)">
+  <rect width="65" height="40"></rect>
+  <rect x="5" y="5" width="40" height="30"></rect>
+  <rect x="50" y="5" width="10" height="30"></rect>
+  <text x="15" y="25">9</text>
+  <g transform="translate(55 20)">
+    <circle r="2"></circle><polyline points="0 0 25 0"></polyline>
+    <polygon points="35 0 25 -5 25 5"></polygon>
+  </g>
+</g>
+<g transform="translate(310 20)">
+  <rect width="65" height="40"></rect>
+  <rect x="5" y="5" width="40" height="30"></rect>
+  <rect x="50" y="5" width="10" height="30"></rect>
+  <text x="15" y="25">66</text>
+  <g transform="translate(55 20)">
+    <circle r="2"></circle><polyline points="0 0 25 0"></polyline>
+    <polygon points="35 0 25 -5 25 5"></polygon>
+  </g>
+</g>
+<g transform="translate(400 20)">
+  <rect width="65" height="40"></rect>
+  <rect x="5" y="5" width="40" height="30"></rect>
+  <rect x="50" y="5" width="10" height="30"></rect>
+  <text x="15" y="25">10</text>
+  <g transform="translate(55 20)">
+    <circle r="2"></circle><polyline points="0 0 25 0"></polyline>
+    <polygon points="35 0 25 -5 25 5"></polygon>
+  </g>
+</g>
+<g transform="translate(490 20)">
+  <rect width="65" height="40"></rect>
+  <rect x="5" y="5" width="40" height="30"></rect>
+  <rect x="50" y="5" width="10" height="30"></rect>
+  <text x="15" y="25">80</text>
+  <g transform="translate(55 20)">
+    <circle r="2"></circle><polyline points="0 0 25 0"></polyline>
+    <polygon points="35 0 25 -5 25 5"></polygon>
+  </g>
+</g>
+<g transform="translate(580 20)">
+  <rect width="65" height="40"></rect>
+  <rect x="5" y="5" width="40" height="30"></rect>
+  <rect x="50" y="5" width="10" height="30"></rect>
+  <text x="15" y="25">11</text>
+  <g transform="translate(55 20)">
+    <circle r="2"></circle>
+    <polyline points="0 0 25 0 25 -40 -565 -40 -565 -30"></polyline>
+    <polygon points="-565 -20 -560 -30 -570 -30"></polygon>
+  </g>
+</g>
+<g>
+  <text y="95">last</text>
+  <g transform="translate(10 100)">
+    <circle r="2"></circle><polyline points="0 0 0 20 600 20 600 -30"></polyline>
+    <polygon points="600 -40 595 -30 605 -30"></polygon>
+  </g>
+</g>
+</g>
+</svg>
+<ul>
+<li>Lista doblemente enlazada circular con puntero al inicio y al final</li>
+</ul>
+<svg viewBox="0,0,700,95" width="100%">
+<g fill="none" stroke="#369" transform="translate(0 5)">
+<g>
+  <text y="15">first</text>
+  <g transform="translate(10 20)">
+    <circle r="2"></circle><polyline points="0 0 0 10 20 10"></polyline>
+    <polygon points="30 10 20 5 20 15"></polygon>
+  </g>
+</g>
+<g transform="translate(40 20)">
+  <g transform="translate(10 20) rotate(180)">
+    <circle r="2"></circle>
+    <polyline points="0 0 25 0 25 -40 -565 -40 -565 -30"></polyline>
+    <polygon points="-565 -20 -560 -30 -570 -30"></polygon>
+  </g>
+  <rect width="80" height="40"></rect>
+  <rect x="5" y="5" width="10" height="30"></rect>
+  <rect x="20" y="5" width="40" height="30"></rect>
+  <rect x="65" y="5" width="10" height="30"></rect>
+  <text x="30" y="25">67</text>
+  <g transform="translate(70 10)">
+    <circle r="2"></circle><polyline points="0 0 25 0"></polyline>
+    <polygon points="35 0 25 -5 25 5"></polygon>
+  </g>
+</g>
+<g transform="translate(145 20)">
+  <g transform="translate(10 30) rotate(180)">
+    <circle r="2"></circle><polyline points="0 0 25 0"></polyline>
+    <polygon points="35 0 25 -5 25 5"></polygon>
+  </g>
+  <rect width="80" height="40"></rect>
+  <rect x="5" y="5" width="10" height="30"></rect>
+  <rect x="20" y="5" width="40" height="30"></rect>
+  <rect x="65" y="5" width="10" height="30"></rect>
+  <text x="30" y="25">33</text>
+  <g transform="translate(70 10)">
+    <circle r="2"></circle><polyline points="0 0 25 0"></polyline>
+    <polygon points="35 0 25 -5 25 5"></polygon>
+  </g>
+</g>
+<g transform="translate(250 20)">
+  <g transform="translate(10 30) rotate(180)">
+    <circle r="2"></circle><polyline points="0 0 25 0"></polyline>
+    <polygon points="35 0 25 -5 25 5"></polygon>
+  </g>
+  <rect width="80" height="40"></rect>
+  <rect x="5" y="5" width="10" height="30"></rect>
+  <rect x="20" y="5" width="40" height="30"></rect>
+  <rect x="65" y="5" width="10" height="30"></rect>
+  <text x="30" y="25">19</text>
+  <g transform="translate(70 10)">
+    <circle r="2"></circle><polyline points="0 0 25 0"></polyline>
+    <polygon points="35 0 25 -5 25 5"></polygon>
+  </g>
+</g>
+<g transform="translate(355 20)">
+  <g transform="translate(10 30) rotate(180)">
+    <circle r="2"></circle><polyline points="0 0 25 0"></polyline>
+    <polygon points="35 0 25 -5 25 5"></polygon>
+  </g>
+  <rect width="80" height="40"></rect>
+  <rect x="5" y="5" width="10" height="30"></rect>
+  <rect x="20" y="5" width="40" height="30"></rect>
+  <rect x="65" y="5" width="10" height="30"></rect>
+  <text x="30" y="25">61</text>
+  <g transform="translate(70 10)">
+    <circle r="2"></circle><polyline points="0 0 25 0"></polyline>
+    <polygon points="35 0 25 -5 25 5"></polygon>
+  </g>
+</g>
+<g transform="translate(460 20)">
+  <g transform="translate(10 30) rotate(180)">
+    <circle r="2"></circle><polyline points="0 0 25 0"></polyline>
+    <polygon points="35 0 25 -5 25 5"></polygon>
+  </g>
+  <rect width="80" height="40"></rect>
+  <rect x="5" y="5" width="10" height="30"></rect>
+  <rect x="20" y="5" width="40" height="30"></rect>
+  <rect x="65" y="5" width="10" height="30"></rect>
+  <text x="30" y="25">9</text>
+  <g transform="translate(70 10)">
+    <circle r="2"></circle><polyline points="0 0 25 0"></polyline>
+    <polygon points="35 0 25 -5 25 5"></polygon>
+  </g>
+</g>
+<g transform="translate(565 20)">
+  <g transform="translate(10 30) rotate(180)">
+    <circle r="2"></circle><polyline points="0 0 25 0"></polyline>
+    <polygon points="35 0 25 -5 25 5"></polygon>
+  </g>
+  <rect width="80" height="40"></rect>
+  <rect x="5" y="5" width="10" height="30"></rect>
+  <rect x="20" y="5" width="40" height="30"></rect>
+  <rect x="65" y="5" width="10" height="30"></rect>
+  <text x="30" y="25">43</text>
+  <g transform="translate(70 20)">
+    <circle r="2"></circle>
+    <polyline points="0 0 25 0 25 -40 -565 -40 -565 -30"></polyline>
+    <polygon points="-565 -20 -560 -30 -570 -30"></polygon>
+  </g>
+</g>
+</g>
+</svg>
+<h2 id="actividad-en-parejas">Actividad en parejas</h2>
+<ul>
+<li>Diseñe los diagramas de clases para todos los tipos tipos de lista indicados.</li>
+<li>Implemente las listas y los métodos indicados por el profesor.</li>
+<li>Presente y explique su implementación a la clase.</li>
+<li>Con ayuda del delegado, compartan todas las implementaciones con toda la clase.</li>
+</ul>
+
+  </div>
+</body>
+</html>

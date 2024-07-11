@@ -1,0 +1,151 @@
+Ejercicio 1: Valor absoluto con template,
+
+#include<iostream>
+#include<conio.h>
+using namespace std;
+
+//Prototipo de funcion
+template<class TIPOD>
+void mostrarAbs(TIPOD numero);
+
+
+int main()
+{
+	int num1=4;
+	float num2 = 56.67;
+	double num3 = -123.5678;
+	mostrarAbs(num1);
+	mostrarAbs(num2);
+	mostrarAbs(num3);	
+return 0;
+}
+
+template<class TIPOD>
+void mostrarAbs(TIPOD numero){
+	if(numero<0){
+	numero=numero*-1;	
+}
+	cout<<"\nEl valor absoluto del número es: "<<numero;
+}
+
+https://www.youtube.com/watch?v=UsvyUFB6omo
+************************
+
+Ejercicios con Lambdas
+--------------------
+
+#include<functional>
+#include<iostream>
+
+using namespace std;
+
+int main()
+{
+	auto f1 = [](int x, int y) {return x + y; };
+	cout << f1(2, 3) << endl;
+
+
+	auto f3 = [](float x, float y,int z) {return x + y-z; };
+	cout << f3(2.5, 3.1,1)<<endl;
+
+
+	auto f4 = [](int x, int y) {return x * y; }(4,8);
+	cout << f4 << endl;
+
+
+	function<int(int, int)>f2 = [](int x, int y) { return x + y; };
+	cout << f2(3, 4) << endl;
+
+
+	auto cuadrado = [](int x) {return x * x; }(5);
+	cout << cuadrado << endl;
+}
+
+----------------------------------------------
+Ejercicio 3
+Lambdas dentro de un lambdas
+
+#include "pch.h"
+#include<iostream>
+using namespace std;
+int main()
+{
+	int duplicarDosVeces = 
+		[](int x) {
+			return [](int y) {	return y * 2; }(x) * 2; } (3);
+		cout << "\nDuplicar dos veces (5): " << duplicarDosVeces << "\n";
+
+}
+
+--------------------------------------
+1.. Lambdas con template...
+
+//Ejercicio con lambdas
+//lambdas
+#include<iostream>
+using namespace std;
+template<typename T>
+void calcular_v(T valor){
+    auto lam = [](T val){return val*2;};
+    cout<<endl<<lam(valor);
+}
+template<typename T>
+T calcular_t(T valor){
+    auto lam=[](T val){return val*4;};
+    return lam(valor);
+}
+int main(){
+    int num,a,b;
+    char letra;
+    cout<<"\nIngresar numero: ";
+    cin>>num;
+    cout<<"\nCon Void: "; calcular_v<float>(num);    
+    cout<<"\nCon retorno: "<<calcular_t<int>(num);
+    auto lam1 = [](int val){return val%2==0;};
+    cout<<"\nVerificar si es múltipo de 2: "<<lam1(num);
+    //crear lambda que permita verificar si un número es impar....
+    auto lam2 = [](int val){return val%2!=0;};
+    cout<<"\nVerificar si es un numero impar: "<<lam2(num);
+    //crear lambda que permita ingresar dos números y mostrar cual es el mayor
+    auto lam3 = [](int a,int b){return a>b? a:b;};//operador condicional "?" -> a>b? a:b --> (Ejemplos) 26>11 = 26, 19>34 =34
+    cout<<"\n\nIngresar primer numero: "; cin>>a; //Ingresar primer valor
+    cout<<"\nIngresar segundo numero: ";cin>>b; //Ingresar segundo valor
+    cout<<"\nEl numero mayor es: "<<lam3(a,b);
+    //ingresar una letra, y verificar si es la letra "A"
+    auto lam4 =[](char a){return a=='A';};
+    cout<<"\n\nIngresar letra: ";cin>>letra;
+    cout<<"\nVerificar si es la letra A: "<<lam4(letra);
+    cin.get();
+    cin.ignore();
+    return 0;
+}
+
+
+----------------------
+
+Para la tercera semana de clases 
+2.-  Duplicado
+
+
+#include<iostream>
+using namespace std;
+int main()
+{
+	int duplicarDosVeces = 		[](int x) {return [](int y){return y * 2; }(x) * 2; } (5);
+		cout << "\nDuplicar dos veces (5): " << duplicarDosVeces << "\n";
+}
+
+
+-------------------------------------------------
+
+#include<iostream>
+using namespace std;
+int main()
+{
+    int var;
+    cin>>var;
+	auto duplicarDosVeces = [](int x) {return [](int y){return y * 2; }(x) * 2;};
+		cout << "\nDuplicar dos veces (5): " << duplicarDosVeces(var) << "\n";
+}
+
+--------------------------------------

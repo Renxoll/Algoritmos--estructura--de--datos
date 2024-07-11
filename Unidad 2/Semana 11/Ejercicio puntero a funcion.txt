@@ -1,0 +1,74 @@
+Con int...
+
+#include <iostream>
+using namespace std;
+
+int imprimir(int e) {
+	//cout << " " << e;
+	return e+1;
+}
+
+int main()
+{
+   int (*imp)(int); //declarar un puntero a función
+   imp = imprimir; //al puntero imp se le asigna la dirección de memoria de la función imprimir
+    cout<<" "<<imp(2);
+    return 0;
+}
+
+------------------------
+//int con dos valores
+
+#include <iostream>
+using namespace std;
+
+int imprimir(int e,int f) {
+	//cout << " " << e;
+	return e+f;
+}
+
+int main()
+{
+   int (*imp)(int,int);
+   imp = imprimir;
+    cout<<" "<<imp(5,2);
+    return 0;
+}
+----------------------
+
+Con void....
+
+#include <iostream>
+using namespace std;
+
+void imprimir(int e) {
+	cout << " " << e;
+}
+
+int main()
+{
+   void (*imp)(int);
+   imp = imprimir;
+    imp(12);
+    return 0;
+}
+
+-----------------
+
+Con Void Envío de parámetros con punteros
+
+#include <iostream>
+using namespace std;
+
+void imprimir(int *e, int f) {
+    cout << " " << *e + f;
+}
+
+int main()
+{
+    void (*imp)(int*, int);
+    imp = imprimir;
+    int a = 12;
+    imp(&a, 4);
+    return 0;
+}

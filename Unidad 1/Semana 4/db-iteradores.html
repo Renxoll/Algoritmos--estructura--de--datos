@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iteradores</title>
+  <style>
+  #content {
+	  width: 960px;
+	  padding: 0;
+	  margin: auto;
+  }
+  .token.keyword { color: #07a; }
+  .token.class-name { color: #bbb; }
+  .token.punctuation { color: #bbb; }
+  .token.operator { color: #a67f59; }
+  .token.function { color: #dd4a68; }
+  .token.string { color: #905; }
+  .token.number { color: #905; }
+  </style>
+</head>
+<body>
+  <div id="content">
+  <h1 id="iteradores">Iteradores</h1>
+<p>La idea detrás de los iteredores es el patrón de recorrido de colecciones. Pensemos en las aplicaciones móviles más usadas como un cliente de mensajería, o un cliente de redes sociales y notaremos que su interfaz está compuesta principalmente por listas.<br>
+Esta necesidad motiva la implementación de estructuras repetitivas “for each” en los principales lenguajes de programación las cuales nos permiten recorrer diferentes tipos de colecciones como arreglos o listas de manera transparente.</p>
+<h2 id="for-each">For each</h2>
+<p>Considerando la siguiente variable de tipo vector:</p>
+<pre class=" language-cpp"><code class="prism  language-cpp">vector<span class="token operator">&lt;</span>string<span class="token operator">&gt;</span> cadenas<span class="token punctuation">;</span>
+</code></pre>
+<p>Podemos recorrer esta colección haciendo uso de la estructura “for each”</p>
+<pre class=" language-cpp"><code class="prism  language-cpp"><span class="token keyword">for</span> <span class="token punctuation">(</span>string s <span class="token operator">:</span> cadenas<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	cout <span class="token operator">&lt;&lt;</span> s <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Esta estructura hace lo mismo que la siguiente implementacón usando la estructura repetitiva “for” clásica:</p>
+<pre class=" language-cpp"><code class="prism  language-cpp"><span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> cadenas<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    string s <span class="token operator">=</span> cadenas<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    cout <span class="token operator">&lt;&lt;</span> s <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>La estructura “for each” hace uso de <strong>Iteradores</strong> para realizar su trabajo e internamente oculta (a esto se le llama <em>syntax sugar</em>) la siguiente estructura equivalente:</p>
+<pre class=" language-cpp"><code class="prism  language-cpp"><span class="token keyword">for</span> <span class="token punctuation">(</span>vector<span class="token operator">&lt;</span>string<span class="token operator">&gt;</span><span class="token operator">::</span>iterator it <span class="token operator">=</span> cadenas<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> it <span class="token operator">!=</span> cadenas<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">++</span>it<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    string s <span class="token operator">=</span> <span class="token operator">*</span>it<span class="token punctuation">;</span>
+    cout <span class="token operator">&lt;&lt;</span> s <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="diagrama-de-clase">Diagrama de clase</h2>
+<p>El código anterior sugiere el siguiente diagrama de clases:</p>
+<svg viewBox="0,0,480,380" width="100%">
+<g fill="none" stroke="#369" transform="translate(5 5)">
+<g>
+<rect width="150" height="150"></rect>
+<text fill="#369" x="60" y="20">List</text>
+<polyline points="0 30 150 30"></polyline>
+<text fill="#369" x="5" y="50">- nElems </text>
+<polyline points="0 60 150 60"></polyline>
+<text fill="#c22" stroke="#c22" x="5" y="80">+ begin(): Iterator </text>
+<text fill="#c22" stroke="#c22" x="5" y="110">+ end(): Iterator</text>
+</g>
+<g transform="translate(150 50)">
+<polyline points="0 25 150 25"></polyline>
+<polyline points="130 10 150 25 130 40"></polyline>
+<polygon fill="#a46" points="0 25 20 10 40 25 20 40"></polygon>
+<text fill="#369" x="95" y="20">first</text>
+<text fill="#369" x="35" y="45">1</text>
+<text fill="#369" x="115" y="45">1</text>
+</g>
+<g transform="translate(300 0)">
+<rect width="100" height="150"></rect>
+<text fill="#369" x="30" y="20">Node</text>
+<polyline points="0 30 100 30"></polyline>
+<text fill="#369" x="5" y="50">- elem </text>
+<polyline points="0 60 100 60"></polyline>
+</g>
+<g transform="translate(400 50)">
+<polyline points="0 25 50 25 50 150 -10 150 -10 100"></polyline>
+<polyline points="5 120 -10 100 -25 120"></polyline>
+<text fill="#369" x="-50" y="140">next</text>
+<text fill="#369" x="5" y="45">1</text>
+<text fill="#369" x="10" y="120">1</text>
+</g>
+<g stroke="#c22" transform="translate(50 150)">
+<polyline points="0 0 0 145 60 145" stroke-dasharray="5 5"></polyline>
+<polyline points="40 130 60 145 40 160"></polyline>
+</g>
+<g stroke="#c22" transform="translate(110 220)">
+<rect width="170" height="150"></rect>
+<text fill="#369" x="50" y="20">Iterator</text>
+<polyline points="0 30 170 30"></polyline>
+<text fill="#369" x="5" y="50">- pos </text>
+<polyline points="0 60 170 60"></polyline>
+<text fill="#c22" x="5" y="80">+ operator++() </text>
+<text fill="#c22" x="5" y="110">+ operator !=(): bool</text>
+<text fill="#c22" x="5" y="140">+ operator *(): T</text>
+</g>
+<g stroke="#c22" transform="translate(280 270)">
+<polyline points="40 25 50 25 50 -120"></polyline>
+<polyline points="65 -100 50 -120 35 -100"></polyline>
+<polygon points="0 25 20 10 40 25 20 40"></polygon>
+<text fill="#c22" x="5" y="-80">aux</text>
+<text fill="#c22" x="35" y="45">1</text>
+<text fill="#c22" x="65" y="-100">1</text>
+</g>
+</g>
+</svg>
+<ul>
+<li>La clase Iterator, demanera similar a Node, una clase embebida pero se diferencia por ser un pública.</li>
+</ul>
+<h2 id="código">Código</h2>
+<pre class=" language-cpp"><code class="prism  language-cpp"><span class="token keyword">class</span> <span class="token class-name">Iterator</span> <span class="token punctuation">{</span>
+    <span class="token keyword">unsigned</span> <span class="token keyword">int</span>    pos<span class="token punctuation">;</span>
+    Node<span class="token operator">*</span>           aux<span class="token punctuation">;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+    <span class="token function">Iterator</span><span class="token punctuation">(</span><span class="token keyword">unsigned</span> <span class="token keyword">int</span> pos<span class="token punctuation">,</span> Node<span class="token operator">*</span> aux<span class="token punctuation">)</span><span class="token operator">:</span> <span class="token function">pos</span><span class="token punctuation">(</span>pos<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">aux</span><span class="token punctuation">(</span>aux<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+    <span class="token keyword">void</span> <span class="token keyword">operator</span> <span class="token operator">++</span><span class="token punctuation">(</span><span class="token punctuation">)</span>           <span class="token punctuation">{</span> pos<span class="token operator">++</span><span class="token punctuation">;</span> aux <span class="token operator">=</span> aux<span class="token operator">-</span><span class="token operator">&gt;</span>next<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+    <span class="token keyword">bool</span> <span class="token keyword">operator</span> <span class="token operator">!=</span><span class="token punctuation">(</span>Iterator x<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">return</span> pos <span class="token operator">!=</span> x<span class="token punctuation">.</span>pos<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+    T    <span class="token keyword">operator</span>  <span class="token operator">*</span><span class="token punctuation">(</span><span class="token punctuation">)</span>           <span class="token punctuation">{</span> <span class="token keyword">return</span> aux<span class="token operator">-</span><span class="token operator">&gt;</span>elem<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<pre class=" language-cpp"><code class="prism  language-cpp">Iterator <span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token function">Iterator</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> first<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<pre class=" language-cpp"><code class="prism  language-cpp">Iterator <span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token function">Iterator</span><span class="token punctuation">(</span>nElem<span class="token punctuation">,</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="actividad-en-parejas">Actividad en parejas</h2>
+<ul>
+<li>Diseñe los diagramas de clases incluyendo iteradores para todos los tipos tipos de lista vistos.</li>
+<li>Implemente los iteradores para las listas según indicación del profesor.</li>
+<li>Presente y explique su implementación a la clase.</li>
+<li>Con ayuda del delegado, compartan todas las implementaciones con toda la clase.</li>
+</ul>
+
+  </div>
+</body>
+</html>
